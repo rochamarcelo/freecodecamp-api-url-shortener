@@ -2,8 +2,11 @@ var express = require('express')
 var mongo = require("mongodb").MongoClient
 var handleUrl = require('url');
 var app = express()
-var mongoUrl = "mongodb://localhost:27017/shortener";
+// var mongoUrl = "mongodb://localhost:27017/shortener";
+var mongoUrl = process.env.MONGOLAB_URI;
+
 app.enable('trust proxy')
+
 app.use('/static', express.static(__dirname + '/public'))
 
 function startCounter(collection, callback) {
@@ -113,6 +116,7 @@ app.get('/new/:orig_url(*)', function (req, res) {
     }
     mongo.connect(mongoUrl, (err, db) => {
         if(err) {
+            console.log(err);
             return res.send("Error 500:");
         }
 
