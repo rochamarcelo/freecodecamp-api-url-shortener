@@ -2,7 +2,7 @@ var express = require('express')
 var mongo = require("mongodb").MongoClient
 var handleUrl = require('url');
 var app = express()
-var mongoUrl = "mongodb://localhost:27017/shortener_temp2";
+var mongoUrl = "mongodb://localhost:27017/shortener";
 app.enable('trust proxy')
 app.use('/static', express.static(__dirname + '/public'))
 
